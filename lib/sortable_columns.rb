@@ -8,7 +8,10 @@ module SortableColumns
       store_sort(sortable)
       return "#{params.delete(:sort_by)} #{params.delete(:order)}"
     else
-      return nil
+      if session[:sortable_columns] && session[:sortable_columns][sortable.to_s.downcase.to_sym]
+        column = session[:sortable_columns][sortable.to_s.downcase.to_sym].keys.first
+        return "#{column.to_s} #{session[:sortable_columns][sortable.to_s.downcase.to_sym][column.to_sym]}"
+      end
     end
   end
   
