@@ -3,8 +3,8 @@ module SortableColumns
   module ViewHelpers
 
     def sort_params(sortable, column)
-      raise 'Please provide a Class as your first param. Ex: sort_param(User, :created_at)' unless sortable.is_a?(Class)
-      raise "#{sortable} has no column \"#{column}\"." unless sortable.column_names.include?(column.to_s)
+      raise ParameterError.new("Please provide a Class as your first param. Ex: sort_param(User, :created_at)") unless sortable.is_a?(Class)
+      raise ParameterError.new("#{sortable} has no column \"#{column}\".") unless sortable.column_names.include?(column.to_s)
       
       init_session unless session[:sortable_columns]
       
@@ -20,13 +20,12 @@ module SortableColumns
       return { :sort_by => column.to_s, :order => 'desc' }
     end
   
-    private
+  private
     
     def init_session
       session[:sortable_columns] = Hash.new
     end
     
   end
-  
   
 end
