@@ -2,7 +2,7 @@ module SortableColumns
   
   class ParameterError < StandardError; end
   
-  def sortable_order(sortable)
+  def sortable_order(sortable, options = {})
     if params[:sort_by] && params[:order]
       validate_params(sortable)
       store_sort(sortable)
