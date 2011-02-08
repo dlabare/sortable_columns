@@ -25,7 +25,7 @@ module SortableColumns
 private
 
   def validate_params(sortable)
-    raise ParameterError.new("#{sortable} has no column \"#{params[:sort_by]}\".") unless sortable_attributes_and_methods(sortable).include?(params[:sort_by])
+    raise ParameterError.new("#{sortable} has no column \"#{params[:sort_by]}\".") unless SortableColumns::sortable_attributes_and_methods(sortable).include?(params[:sort_by])
     raise ParameterError.new("Order must be \"asc\" or \"desc\"") unless params[:order] == "asc" || params[:order] == "desc"
   end
 
