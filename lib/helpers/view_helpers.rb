@@ -3,9 +3,7 @@ module SortableColumns
   module ViewHelpers
 
     def sort_params(sortable, column)
-      raise ParameterError.new("Please provide a Class as your first param. Ex: sort_param(User, :created_at)") unless sortable.is_a?(Class)
-      raise ParameterError.new("#{sortable} has no column \"#{column}\".") unless sortable_attributes_and_methods(sortable).include?(column.to_s)
-      
+      SortableColumns.validate_params(sortable, :sort_by=>column)
       init_session unless session[:sortable_columns]
       
       if session[:sortable_columns][sortable.to_s.downcase.to_sym]
