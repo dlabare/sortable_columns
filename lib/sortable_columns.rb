@@ -29,6 +29,11 @@ module SortableColumns
     raise ParameterError.new("Order must be \"asc\" or \"desc\" - you gave #{params[:order]}") unless params[:order].blank? || ["asc","desc"].include?(params[:order].to_s.downcase)
   end
   
+  
+  def store_params
+    @params = params.clone - [ :controller, :action, :authenticity_token, :page, :format, :per_page ]
+  end
+  
   module_function :sortable_attributes_and_methods, :validate_params
   
 private
