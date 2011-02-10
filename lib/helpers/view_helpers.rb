@@ -8,14 +8,14 @@ module SortableColumns
       
       if session[:sortable_columns][sortable.to_s.downcase.to_sym]
         if session[:sortable_columns][sortable.to_s.downcase.to_sym][column.to_sym] == "asc"
-          return { :sort_by => column.to_s, :order => 'desc' }
+          return params.merge( { :sort_by => column.to_s, :order => 'desc' } )
         else
-          return { :sort_by => column.to_s, :order => 'asc' }  
+          return params.merge( { :sort_by => column.to_s, :order => 'asc' }  )
         end
       end
       
       # default
-      return { :sort_by => column.to_s, :order => 'desc' }
+      return params.merge( { :sort_by => column.to_s, :order => 'desc' } )
     end
   
   private
