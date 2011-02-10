@@ -19,7 +19,7 @@ module SortableColumns
   
   def sortable_attributes_and_methods( sortable )
     columns = sortable.column_names
-    columns += sortable.sortable_methods if sortable.respond_to?( :sortable_methods )
+    columns += sortable.sortable_methods.to_a if sortable.respond_to?( :sortable_methods )
     columns.map{ |c| c.to_s }
   end
   
