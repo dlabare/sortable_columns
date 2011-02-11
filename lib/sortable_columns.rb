@@ -24,7 +24,6 @@ module SortableColumns
   end
   
   def validate_params(sortable, params)
-    puts "params[:order] = #{params[:order].inspect}\n\nsortable_attributes_and_methods( sortable ) = #{sortable_attributes_and_methods( sortable ).inspect}\n\n"
     raise ParameterError.new("#{sortable} has no column or sortable_method \"#{params[:sort_by]}\". \n\nIf you're trying to sort by an instance method that isn't a column name (e.g. a value from an associated table), you must define \n\n\tsortable_instance_methods :my_method_1, :my_method_2 \n\nin your model class. Don't forget to include it as a column in your query too!") unless SortableColumns.sortable_attributes_and_methods(sortable).include?(params[:sort_by].to_s)
     raise ParameterError.new("Order must be \"asc\" or \"desc\" - you gave #{params[:order]}") unless params[:order].blank? || ["asc","desc"].include?(params[:order].to_s.downcase)
   end
