@@ -6,7 +6,7 @@ module SortableColumns
     if params[:sort_by] && params[:order]
       validate_params(sortable, params)
       store_sort(sortable)
-      return "#{params.delete(:sort_by)} #{params.delete(:order)}"
+      return "#{params[:sort_by]} #{params[:order]}"
     else
       if session[:sortable_columns] && session[:sortable_columns][sortable.to_s.downcase.to_sym]
         column = session[:sortable_columns][sortable.to_s.downcase.to_sym].keys.first
