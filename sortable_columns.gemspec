@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = SortableColumns::VERSION
   spec.authors       = ["Daniel LaBare"]
   spec.email         = ["dlabare@gmail.com"]
-  spec.description   = %q{TODO: Simple sortable columns for your Rails app}
-  spec.summary       = %q{TODO: Sort a simple dataset by column headers}
+  spec.description   = %q{Simple sortable columns for your Rails app}
+  spec.summary       = %q{Sort a simple dataset by column headers}
   spec.homepage      = ""
   spec.license       = "MIT"
 
