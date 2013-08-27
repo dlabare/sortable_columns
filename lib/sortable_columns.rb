@@ -1,3 +1,5 @@
+require 'helpers/view_helpers'
+
 module SortableColumns
   
   class ParameterError < StandardError; end
@@ -30,3 +32,6 @@ private
   end
   
 end
+
+ActionController::Base.send(:include, SortableColumns)
+ActionView::Base.send(:include, SortableColumns::ViewHelpers)
