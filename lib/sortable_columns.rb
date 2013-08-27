@@ -10,9 +10,9 @@ module SortableColumns
       store_sort(sortable)
       return "#{params.dup.delete(:sort_by)} #{params.dup.delete(:order)}"
     elsif options[:use_session]
-      if session[:sortable_columns] && session[:sortable_columns][sortable.to_s.downcase.to_sym]
-        column = session[:sortable_columns][sortable.to_s.downcase.to_sym].keys.first
-        return "#{column.to_s} #{session[:sortable_columns][sortable.to_s.downcase.to_sym][column.to_sym]}"
+      if session[:sortable_columns] && session[:sortable_columns][sortable.to_s.downcase]
+        column = session[:sortable_columns][sortable.to_s.downcase].keys.first
+        return "#{column.to_s} #{session[:sortable_columns][sortable.to_s.downcase][column.to_s]}"
       else
         return options[:default]
       end
@@ -30,7 +30,7 @@ private
 
   def store_sort(sortable)
     session[:sortable_columns] ||= Hash.new
-    session[:sortable_columns][sortable.to_s.downcase.to_sym] = {params[:sort_by].to_sym => params[:order]}
+    session[:sortable_columns][sortable.to_s.downcase] = {params[:sort_by] => params[:order]}
   end
   
 end

@@ -9,8 +9,8 @@ module SortableColumns
       init_session unless session[:sortable_columns]
       return_params = params.dup.except('action', 'controller')
       
-      if session[:sortable_columns][sortable.to_s.downcase.to_sym]
-        if session[:sortable_columns][sortable.to_s.downcase.to_sym][column.to_sym] == "asc"
+      if session[:sortable_columns][sortable.to_s.downcase]
+        if session[:sortable_columns][sortable.to_s.downcase][column] == "asc"
           return return_params.merge(:sort_by => column.to_s, :order => 'desc')
         else
           return return_params.merge(:sort_by => column.to_s, :order => 'asc')
